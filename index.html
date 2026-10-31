@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09050b">
+<title>For Samia ♡</title>
+<style>
+:root{--pink:#ff72bb;--pale:#ffd5eb;--bg:#09050b;--muted:#c8a8bc}
+*{box-sizing:border-box}
+body{margin:0;color:#fff4fa;background:radial-gradient(ellipse at 50% 0%,#35132e 0,#100914 42%,#070509 100%);font-family:Georgia,'Noto Serif Bengali',serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(#ff9bd1 1px,transparent 1px);background-size:37px 37px}
+main{width:min(900px,92%);margin:auto;padding:34px 0 55px;position:relative}
+header{text-align:center;padding:30px 10px 20px}
+.eyebrow{letter-spacing:5px;text-transform:uppercase;color:#e9a5cc;font:11px Arial,sans-serif}
+h1{font-size:clamp(48px,12vw,88px);line-height:1;margin:18px 0 8px;color:#ff9bd1;text-shadow:0 0 24px #ff4da8; font-style:italic}
+.nickname{color:#ffe1f1;font-size:clamp(17px,4vw,23px)}
+.sub{color:#d7b7cb;line-height:1.7;margin:15px auto 0;max-width:520px}
+.panel{border:1px solid #d85a9c;border-radius:22px;background:linear-gradient(135deg,#1c0d1cdd,#09070ddd);box-shadow:0 0 25px #c52b7930,inset 0 0 22px #e75b9b12;padding:24px;margin:22px 0}
+.panel h2{color:#ffadd8;text-align:center;font-size:24px;margin:0 0 18px}
+.timer{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center}
+.timebox{padding:8px 2px;border-right:1px solid #74405e}.timebox:last-child{border:0}
+.num{display:block;color:#ff83c3;font:bold clamp(27px,7vw,43px) Arial,sans-serif;text-shadow:0 0 14px #ff4da8}
+.unit{font:12px Arial,sans-serif;color:#e7c8d9;letter-spacing:1px}
+.small{text-align:center;color:#d9a9c6;font-size:14px;margin:17px 0 0}
+.lock{text-align:center}
+.lockicon{font-size:52px;filter:drop-shadow(0 0 12px #ff66b4)}
+.lock p{color:#e7c8d9;line-height:1.7}
+button{border:1px solid #ff9bce;border-radius:999px;padding:13px 25px;color:#fff;background:linear-gradient(90deg,#9c286a,#e64d9c);font-weight:bold;font-size:15px;box-shadow:0 0 18px #e64d9c55;cursor:pointer}
+button:disabled{opacity:.55;cursor:not-allowed}
+.hidden{display:none!important}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.photo{background:#fff0f8;color:#24101d;padding:9px 9px 13px;transform:rotate(-2deg);box-shadow:0 7px 25px #0008}
+.photo:nth-child(2){transform:rotate(2deg)}.photo:nth-child(3){transform:rotate(-1deg)}
+.photo img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.caption{text-align:center;font-style:italic;margin:10px 0 0;font-size:15px}
+.letter{font-size:16px;line-height:1.95;color:#f7dfec;white-space:pre-line}
+.letter .sign{color:#ff9dce;text-align:right;font-style:italic;margin-top:20px}
+.reveal{text-align:center;animation:fade .9s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.heart{position:fixed;bottom:-30px;color:#ff79bb;opacity:.65;animation:float 9s linear infinite;pointer-events:none}
+@keyframes float{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+footer{text-align:center;color:#9d7b91;font-size:13px;margin-top:34px}
+@media(max-width:560px){main{width:93%;padding-top:18px}.panel{padding:18px 13px}.gallery{gap:8px}.photo{padding:6px 6px 10px}.caption{font-size:12px}.unit{font-size:10px}.letter{font-size:15px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="eyebrow">A little universe made for you</div>
+  <h1>Samia ♡</h1>
+  <div class="nickname">Amr lokkie 😭🌷</div>
+  <p class="sub">Some people make ordinary days feel special. This little surprise is for one of them. 💗</p>
+</header>
+
+<section class="panel">
+  <h2>♡ Birthday Countdown ♡</h2>
+  <div class="timer" aria-live="polite">
+    <div class="timebox"><span class="num" id="days">--</span><span class="unit">DAYS</span></div>
+    <div class="timebox"><span class="num" id="hours">--</span><span class="unit">HOURS</span></div>
+    <div class="timebox"><span class="num" id="minutes">--</span><span class="unit">MINUTES</span></div>
+    <div class="timebox"><span class="num" id="seconds">--</span><span class="unit">SECONDS</span></div>
+  </div>
+  <p class="small" id="countLabel">Counting down to 3 November · 12:00 AM (Bangladesh time)</p>
+</section>
+
+<section class="panel lock" id="locked">
+  <div class="lockicon">🔒</div>
+  <h2>Surprise Locked!</h2>
+  <p>একটু অপেক্ষা করো, Samia… তোমার জন্য ছোট্ট একটা surprise রাখা আছে।<br>It will unlock automatically at midnight. 💗</p>
+  <button id="lockedButton" disabled>🔐 Waiting for the magic moment</button>
+</section>
+
+<div id="surprise" class="hidden">
+  <section class="panel reveal">
+    <div style="font-size:42px">🎁 💗 🌷</div>
+    <h2>Happy Birthday, Samia!</h2>
+    <p class="sub">আজকের দিনটা তোমার মতোই সুন্দর হোক। You deserve all the happiness in the world.</p>
+  </section>
+
+  <section class="panel reveal">
+    <h2>💌 A Little Wish For You</h2>
+    <div class="letter">প্রিয় Samia,
+
+শুভ জন্মদিন, আমার লোক্কি! 😭🌷
+
+তোমার জীবনের প্রতিটা সকাল যেন নতুন আশা নিয়ে আসে, প্রতিটা দিন ভরে উঠুক হাসি আর সুন্দর মুহূর্তে। তোমার ছোট ছোট স্বপ্নগুলো একে একে সত্যি হোক। মন খারাপের দিনগুলো পেরিয়ে তুমি যেন সবসময় নিজের মতো করে ভালো থাকতে পারো।
+
+তোমাকে নিয়ে আমার অনেক সুন্দর স্মৃতি আছে, আর এই ছোট্ট website-টা সেই স্মৃতিগুলোর জন্যই। দূরত্ব বা ব্যস্ততা যাই থাকুক, তোমার ভালো থাকা আর হাসিটা সবসময় গুরুত্বপূর্ণ।
+
+আজকের দিনে শুধু এটুকুই বলতে চাই—নিজের যত্ন নিও, নিজের স্বপ্নগুলোকে ভালোবেসো, আর কখনো ভুলে যেও না তুমি কতটা special.
+
+Happy Birthday once again, Samia. May your world always be filled with love, peace, and endless reasons to smile. ❤️
+
+            <div class="sign">— তোমার Lokkie ♡</div>
+    </div>
+  </section>
+
+  <section class="panel reveal">
+    <h2>♡ Our Little Photo Gallery ♡</h2>
+    <div class="gallery">
+      <div class="photo"><img src="photos/samia-1.jpg" alt="Samia photo 1"><div class="caption">My Cutie ♡</div></div>
+      <div class="photo"><img src="photos/samia-2.jpg" alt="Samia photo 2"><div class="caption">My Princess 🌷</div></div>
+      <div class="photo"><img src="photos/samia-3.jpg" alt="Samia photo 3"><div class="caption">My Favourite Smile ♡</div></div>
+    </div>
+  </section>
+
+  <section class="panel reveal lock">
+    <div style="font-size:42px">💝</div>
+    <h2>One Last Thing…</h2>
+    <p>তোমার দিনটা অনেক সুন্দর কাটুক। Keep smiling, birthday girl! 🥹</p>
+    <div style="color:#ff9dce;font-style:italic;font-size:20px">Today, tomorrow & always ♡</div>
+  </section>
+</div>
+<footer>Made with ♡, just for Samia</footer>
+</main>
+<script>
+const target = new Date("2026-11-03T00:00:00+06:00").getTime();
+const $ = id => document.getElementById(id);
+function unlock(){
+  $("locked").classList.add("hidden");
+  $("surprise").classList.remove("hidden");
+  $("countLabel").textContent = "The magic moment is here. Happy Birthday, Samia! ♡";
+  document.title = "Happy Birthday Samia ♡";
+  for(let i=0;i<18;i++){
+    const h=document.createElement("div"); h.className="heart"; h.textContent=["♡","♥","✦"][i%3];
+    h.style.left=(Math.random()*100)+"%"; h.style.animationDelay=(Math.random()*7)+"s";
+    h.style.fontSize=(16+Math.random()*22)+"px"; document.body.appendChild(h);
+    setTimeout(()=>h.remove(),10000);
+  }
+}
+function tick(){
+  const diff=target-Date.now();
+  if(diff<=0){["days","hours","minutes","seconds"].forEach(id=>$(id).textContent="00");unlock();return;}
+  $("days").textContent=String(Math.floor(diff/86400000)).padStart(2,"0");
+  $("hours").textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,"0");
+  $("minutes").textContent=String(Math.floor(diff%3600000/60000)).padStart(2,"0");
+  $("seconds").textContent=String(Math.floor(diff%60000/1000)).padStart(2,"0");
+}
+tick(); setInterval(tick,1000);
+</script>
+</body>
+</html>
